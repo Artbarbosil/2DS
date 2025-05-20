@@ -1,0 +1,18 @@
+body { font-family: 'Inter', sans-serif; background-color: #FDFBF7; color: #3A3A3A; }
+.nav-link { transition: all 0.3s ease; }
+.nav-link.active { color: #2A9D8F; border-bottom-color: #2A9D8F; font-weight: 600; }
+.content-section { display: none; }
+.content-section.active { display: block; }
+.table-header { background-color: #0077B6; color: #FDFBF7; }
+.chart-container { position: relative; width: 100%; max-width: 700px; margin-left: auto; margin-right: auto; height: 350px; max-height: 450px; padding: 1rem; background-color: #FFFFFF; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); }
+h2 { color: #0077B6; }
+h3 { color: #005A8D; } /* Um tom um pouco mais escuro de azul para H3 */
+.card { background-color: #FFFFFF; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); padding: 1.5rem; margin-bottom: 1.5rem;}
+.btn-accent { background-color: #2A9D8F; color: #FFFFFF; }
+.btn-accent:hover { background-color: #25887D; }
+.table-responsive { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 0.75rem; text-align: left; border: 1px solid #D1D5DB; }
+thead th { background-color: #0077B6; color: white; }
+tbody tr:nth-child(even) { background-color: #F0F9FF; } /* Azul bem claro para linhas pares */
+tbody tr:hover { background-color: #E0F2FE; } /* Azul um pouco mais escuro no hover */

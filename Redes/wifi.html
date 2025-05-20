@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador Interativo: Wi-Fi vs. Bluetooth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="wifistyle.css">
+    <!-- Visualization & Content Choices: 
+        - Introdução: Texto. Meta: Informar.
+        - Wi-Fi/Bluetooth Detalhes (Definição, Como Funciona, Aplicações): Texto e listas. Meta: Informar, Organizar.
+        - Wi-Fi Padrões / Bluetooth Versões: Tabelas HTML. Meta: Informar, Comparar (dentro da tecnologia). Interação: Leitura, scroll. Justificativa: Formato padrão para dados tabulares.
+        - Wi-Fi/Bluetooth Vantagens/Desvantagens: Listas lado a lado. Meta: Comparar.
+        - Comparativo Wi-Fi vs. Bluetooth: 
+            1. Tabela HTML (do relatório). Meta: Comparar.
+            2. Gráfico de Barras Agrupadas (Chart.js). Meta: Comparar visualmente (Alcance, Velocidade, Consumo). Interação: Visualização. Justificativa: Gráfico facilita a percepção rápida das diferenças chave.
+        - Conclusão: Texto. Meta: Sumarizar.
+        - Todos os conteúdos são extraídos do relatório fornecido.
+    -->
+</head>
+<body class="antialiased">
+
+    <header class="bg-[#FFFFFF] shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <h1 class="text-2xl font-bold text-[#0077B6]">Wi-Fi & Bluetooth: Guia Interativo</h1>
+                <nav class="hidden md:flex space-x-4">
+                    <a href="#introducao" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-[#3A3A3A] hover:text-[#2A9D8F] border-b-2 border-transparent hover:border-[#2A9D8F]">Introdução</a>
+                    <a href="#wifi" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-[#3A3A3A] hover:text-[#2A9D8F] border-b-2 border-transparent hover:border-[#2A9D8F]">Wi-Fi</a>
+                    <a href="#bluetooth" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-[#3A3A3A] hover:text-[#2A9D8F] border-b-2 border-transparent hover:border-[#2A9D8F]">Bluetooth</a>
+                    <a href="#comparativo" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-[#3A3A3A] hover:text-[#2A9D8F] border-b-2 border-transparent hover:border-[#2A9D8F]">Comparativo</a>
+                    <a href="#conclusao" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-[#3A3A3A] hover:text-[#2A9D8F] border-b-2 border-transparent hover:border-[#2A9D8F]">Conclusão</a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-[#0077B6] focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-[#FFFFFF] shadow-lg">
+            <a href="#introducao" class="block nav-link px-4 py-3 text-sm text-[#3A3A3A] hover:bg-[#E0F2FE]">Introdução</a>
+            <a href="#wifi" class="block nav-link px-4 py-3 text-sm text-[#3A3A3A] hover:bg-[#E0F2FE]">Wi-Fi</a>
+            <a href="#bluetooth" class="block nav-link px-4 py-3 text-sm text-[#3A3A3A] hover:bg-[#E0F2FE]">Bluetooth</a>
+            <a href="#comparativo" class="block nav-link px-4 py-3 text-sm text-[#3A3A3A] hover:bg-[#E0F2FE]">Comparativo</a>
+            <a href="#conclusao" class="block nav-link px-4 py-3 text-sm text-[#3A3A3A] hover:bg-[#E0F2FE]">Conclusão</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <section id="introducao" class="content-section card">
+            <h2 class="text-3xl font-semibold mb-6">1. Introdução aos Meios de Transmissão Sem Fio</h2>
+            <p class="mb-4 text-lg leading-relaxed">Bem-vindo ao nosso guia interativo sobre meios de transmissão sem fio! Esta seção introdutória explora o conceito fundamental dessas tecnologias, que transformaram nossa maneira de conectar e comunicar. Abordaremos as vantagens gerais, como mobilidade e flexibilidade, e os desafios inerentes, como segurança e interferência. O foco principal deste guia será em duas tecnologias ubíquas: Wi-Fi e Bluetooth.</p>
+            <p class="mb-4 leading-relaxed">Meios de transmissão sem fio são aqueles que não necessitam de cabos físicos para propagar sinais de informação. Em vez disso, utilizam ondas eletromagnéticas, como ondas de rádio, micro-ondas ou infravermelho, para transportar dados através do ar ou do vácuo. Essa tecnologia revolucionou a forma como nos conectamos, oferecendo mobilidade e flexibilidade.</p>
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Principais Vantagens:</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Mobilidade:</strong> Permite que dispositivos se conectem e comuniquem em movimento.</li>
+                        <li><strong>Flexibilidade de Instalação:</strong> Reduz a necessidade de infraestrutura física complexa (cabos).</li>
+                        <li><strong>Conveniência:</strong> Facilita a conexão de múltiplos dispositivos.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-3">Principais Desafios:</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Segurança:</strong> Redes sem fio podem ser mais vulneráveis a acessos não autorizados se não forem devidamente protegidas.</li>
+                        <li><strong>Interferência:</strong> Sinais podem ser afetados por outros dispositivos eletrônicos, obstáculos físicos e condições atmosféricas.</li>
+                        <li><strong>Alcance e Largura de Banda:</strong> Geralmente possuem alcance e capacidade de transmissão de dados inferiores aos meios com fio.</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="leading-relaxed">Nesta exploração, focaremos em duas das tecnologias de transmissão sem fio mais proeminentes e amplamente utilizadas: Wi-Fi e Bluetooth, detalhando seu funcionamento, padrões, vantagens, desvantagens e aplicações.</p>
+        </section>
+
+        <section id="wifi" class="content-section card">
+            <h2 class="text-3xl font-semibold mb-6">2. Wi-Fi (Wireless Fidelity - IEEE 802.11)</h2>
+            <p class="mb-6 text-lg leading-relaxed">Nesta seção, mergulharemos no universo do Wi-Fi. Você aprenderá sobre sua definição, o propósito por trás dessa tecnologia onipresente, como ela opera utilizando ondas de rádio, seus componentes essenciais, e as faixas de frequência em que atua. Exploraremos também os diversos padrões IEEE 802.11 que definem suas capacidades, além de suas vantagens, desvantagens e as inúmeras aplicações no nosso dia a dia.</p>
+
+            <div class="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="text-2xl font-semibold mb-3">2.1. Definição e Propósito</h3>
+                <p class="leading-relaxed"><strong>Wi-Fi</strong> é um conjunto de especificações para redes locais sem fio (WLAN - Wireless Local Area Network) baseado no padrão IEEE 802.11. Seu principal propósito é permitir que dispositivos eletrônicos, como computadores, smartphones, tablets e outros dispositivos IoT (Internet das Coisas), conectem-se à internet ou comuniquem-se entre si sem a necessidade de cabos.</p>
+            </div>
+
+            <div class="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="text-2xl font-semibold mb-3">2.2. Como Funciona</h3>
+                <p class="mb-4 leading-relaxed">O Wi-Fi utiliza ondas de rádio para transmitir dados. Os componentes básicos de uma rede Wi-Fi incluem:</p>
+                <ul class="list-disc list-inside space-y-2 mb-4 leading-relaxed">
+                    <li><strong>Dispositivos Clientes (Stations - STAs):</strong> Equipamentos com capacidade Wi-Fi (ex: notebook, smartphone).</li>
+                    <li><strong>Ponto de Acesso (Access Point - AP):</strong> Um dispositivo que transmite e recebe dados via Wi-Fi, geralmente conectado a uma rede cabeada (como um roteador doméstico). Ele cria uma área de cobertura sem fio, conhecida como Basic Service Set (BSS).</li>
+                    <li><strong>Roteador Wi-Fi:</strong> Frequentemente, o Ponto de Acesso é integrado a um roteador, que gerencia o tráfego de dados entre a rede local e a internet.</li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2">Princípio Básico:</h4>
+                <ol class="list-decimal list-inside space-y-1 mb-4 leading-relaxed">
+                    <li>O dispositivo cliente envia dados usando sua antena Wi-Fi, convertendo-os em ondas de rádio.</li>
+                    <li>O Ponto de Acesso recebe essas ondas de rádio e as converte de volta em dados digitais.</li>
+                    <li>Se o destino for a internet, o roteador encaminha os dados. Se for outro dispositivo na rede local, o AP pode encaminhar diretamente ou via roteador.</li>
+                    <li>O processo inverso ocorre para receber dados.</li>
+                </ol>
+                <p class="mb-2 leading-relaxed">O Wi-Fi opera principalmente em três faixas de frequência:</p>
+                <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                    <li><strong>2.4 GHz:</strong> Maior alcance e melhor penetração em obstáculos, mas mais suscetível a interferências de outros dispositivos (micro-ondas, telefones sem fio, Bluetooth) e com menos canais disponíveis.</li>
+                    <li><strong>5 GHz:</strong> Menor alcance e penetração, mas oferece velocidades mais altas, mais canais e menos interferência.</li>
+                    <li><strong>6 GHz (Wi-Fi 6E):</strong> Faixa mais recente, oferecendo ainda mais canais e menos interferência, resultando em maior velocidade e menor latência.</li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="text-2xl font-semibold mb-3">2.3. Padrões Comuns (IEEE 802.11)</h3>
+                <p class="mb-4 leading-relaxed">Ao longo dos anos, diversos padrões Wi-Fi foram desenvolvidos, cada um com melhorias em velocidade, alcance e eficiência. A tabela abaixo resume os principais padrões. Note que velocidades e alcances são teóricos e podem variar.</p>
+                <div class="table-responsive shadow-lg rounded-lg">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Padrão</th>
+                                <th>Frequência(s)</th>
+                                <th>Velocidade Máxima Teórica</th>
+                                <th>Alcance Típico (Interno)</th>
+                                <th>Ano de Lançamento</th>
+                                <th>Nome Comercial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>802.11a</td><td>5 GHz</td><td>54 Mbps</td><td>~35m</td><td>1999</td><td>Wi-Fi 1 (retroativamente)</td></tr>
+                            <tr><td>802.11b</td><td>2.4 GHz</td><td>11 Mbps</td><td>~35m</td><td>1999</td><td>Wi-Fi 2 (retroativamente)</td></tr>
+                            <tr><td>802.11g</td><td>2.4 GHz</td><td>54 Mbps</td><td>~38m</td><td>2003</td><td>Wi-Fi 3 (retroativamente)</td></tr>
+                            <tr><td>802.11n</td><td>2.4/5 GHz</td><td>600 Mbps</td><td>~70m</td><td>2009</td><td>Wi-Fi 4</td></tr>
+                            <tr><td>802.11ac</td><td>5 GHz</td><td>Vários Gbps (ex: 1.3 Gbps)</td><td>~35m (depende da config.)</td><td>2013</td><td>Wi-Fi 5</td></tr>
+                            <tr><td>802.11ax</td><td>2.4/5/6 GHz</td><td>Vários Gbps (ex: 9.6 Gbps)</td><td>~30m (depende da config.)</td><td>2019</td><td>Wi-Fi 6/6E</td></tr>
+                            <tr><td>802.11be</td><td>2.4/5/6 GHz</td><td>Até 46 Gbps (teórico)</td><td>Similar ao Wi-Fi 6/6E</td><td>Previsto 2024</td><td>Wi-Fi 7</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="p-6 bg-green-50 rounded-lg border border-green-200">
+                    <h3 class="text-xl font-semibold mb-3 text-green-700">2.4. Vantagens do Wi-Fi</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Conectividade com a Internet:</strong> Principalmente usado para acesso à internet de alta velocidade.</li>
+                        <li><strong>Ampla Cobertura:</strong> Pode cobrir uma casa inteira ou um escritório com um ou mais Pontos de Acesso.</li>
+                        <li><strong>Alta Taxa de Transferência:</strong> Padrões mais recentes oferecem velocidades comparáveis a redes cabeadas.</li>
+                        <li><strong>Suporte a Múltiplos Dispositivos:</strong> Permite que vários dispositivos se conectem simultaneamente.</li>
+                        <li><strong>Padrão Universal:</strong> Amplamente adotado e compatível entre diferentes fabricantes.</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-red-50 rounded-lg border border-red-200">
+                    <h3 class="text-xl font-semibold mb-3 text-red-700">2.5. Desvantagens/Limitações do Wi-Fi</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Consumo de Energia:</strong> Geralmente consome mais energia que o Bluetooth.</li>
+                        <li><strong>Segurança:</strong> Requer configuração cuidadosa de senhas (WPA3 recomendado).</li>
+                        <li><strong>Interferência:</strong> Pode sofrer interferência de outros dispositivos na mesma faixa.</li>
+                        <li><strong>Custo de Implementação:</strong> Redes em larga escala podem ser custosas.</li>
+                        <li><strong>Complexidade de Configuração:</strong> Pode ser complexa para usuários leigos.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-6 bg-blue-50 rounded-lg border border-blue-200">
+                <h3 class="text-2xl font-semibold mb-3">2.6. Aplicações Comuns</h3>
+                <ul class="list-disc list-inside space-y-1 columns-1 sm:columns-2 leading-relaxed">
+                    <li>📶 Acesso à internet em residências e locais públicos.</li>
+                    <li>🔄 Redes locais sem fio para compartilhamento.</li>
+                    <li>🎬 Streaming de vídeo e áudio HD.</li>
+                    <li>🎮 Jogos online.</li>
+                    <li>🏠 Conexão de dispositivos de automação residencial.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="bluetooth" class="content-section card">
+            <h2 class="text-3xl font-semibold mb-6">3. Bluetooth</h2>
+            <p class="mb-6 text-lg leading-relaxed">Agora, vamos explorar o Bluetooth, uma tecnologia focada em conexões de curto alcance e baixo consumo de energia. Detalharemos sua definição, como opera através do pareamento de dispositivos e do salto de frequência (FHSS), suas diferentes versões e classes de potência. Assim como fizemos com o Wi-Fi, analisaremos suas vantagens, desvantagens e as diversas aplicações que simplificam nossa interação com dispositivos pessoais.</p>
+
+            <div class="mb-8 p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                <h3 class="text-2xl font-semibold mb-3">3.1. Definição e Propósito</h3>
+                <p class="leading-relaxed"><strong>Bluetooth</strong> é uma tecnologia de comunicação sem fio de curto alcance projetada para conectar dispositivos eletrônicos pessoais, eliminando a necessidade de cabos para transferir dados ou áudio entre eles. É padronizado como IEEE 802.15.1. Seu foco principal é a simplicidade, baixo consumo de energia e baixo custo.</p>
+            </div>
+
+            <div class="mb-8 p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                <h3 class="text-2xl font-semibold mb-3">3.2. Como Funciona</h3>
+                <p class="mb-4 leading-relaxed">O Bluetooth também utiliza ondas de rádio na faixa de frequência de 2.4 GHz (especificamente de 2.402 GHz a 2.480 GHz), a mesma do Wi-Fi 802.11b/g/n, mas com mecanismos para minimizar interferências.</p>
+                <h4 class="text-lg font-semibold mb-2">Princípios Básicos:</h4>
+                <ul class="list-disc list-inside space-y-2 mb-4 leading-relaxed">
+                    <li><strong>Pareamento (Pairing):</strong> Antes que dois dispositivos Bluetooth possam se comunicar, eles precisam ser "pareados". Este é um processo de autenticação que estabelece uma conexão segura.</li>
+                    <li><strong>Piconet:</strong> Uma rede Bluetooth básica é chamada de "piconet". Ela consiste em um dispositivo "mestre" (master) e até sete dispositivos "escravos" (slaves) ativos. O mestre controla a comunicação na piconet.</li>
+                    <li><strong>Scatternet:</strong> Múltiplas piconets podem ser interconectadas para formar uma "scatternet", onde um dispositivo pode ser mestre em uma piconet e escravo em outra.</li>
+                    <li><strong>Frequency Hopping Spread Spectrum (FHSS):</strong> Para evitar interferências e aumentar a segurança, o Bluetooth muda rapidamente sua frequência de operação (salta entre 79 canais diferentes) muitas vezes por segundo.</li>
+                </ul>
+            </div>
+
+            <div class="mb-8 p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                <h3 class="text-2xl font-semibold mb-3">3.3. Versões e Classes</h3>
+                <p class="mb-4 leading-relaxed">O Bluetooth evoluiu através de várias versões, cada uma trazendo melhorias. As classes de potência determinam o alcance máximo.</p>
+                <h4 class="text-lg font-semibold mb-2">Principais Versões:</h4>
+                <ul class="list-disc list-inside space-y-1 mb-4 leading-relaxed">
+                    <li><strong>1.0/1.1/1.2:</strong> Iniciais, até 721 kbps.</li>
+                    <li><strong>2.0/2.1 + EDR:</strong> Até 3 Mbps, pareamento simplificado.</li>
+                    <li><strong>3.0 + HS:</strong> Uso de link Wi-Fi para até 24 Mbps.</li>
+                    <li><strong>4.0/4.1/4.2 (BLE):</strong> Bluetooth Low Energy, foco em baixo consumo.</li>
+                    <li><strong>5.0/5.1/5.2/5.3/5.4:</strong> Melhorias em alcance, velocidade e capacidade do BLE; áudio LE.</li>
+                </ul>
+                <h4 class="text-lg font-semibold mb-2">Classes de Potência:</h4>
+                <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                    <li><strong>Classe 1:</strong> 100 mW, até 100 metros.</li>
+                    <li><strong>Classe 2:</strong> 2.5 mW, até 10 metros (mais comum).</li>
+                    <li><strong>Classe 3:</strong> 1 mW, até 1 metro.</li>
+                </ul>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                 <div class="p-6 bg-green-50 rounded-lg border border-green-200">
+                    <h3 class="text-xl font-semibold mb-3 text-green-700">3.4. Vantagens do Bluetooth</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Baixo Consumo de Energia:</strong> Especialmente com o BLE, ideal para portáteis e IoT.</li>
+                        <li><strong>Baixo Custo:</strong> Chips baratos para integrar.</li>
+                        <li><strong>Simplicidade de Uso:</strong> Pareamento geralmente simples.</li>
+                        <li><strong>Segurança:</strong> Criptografia e autenticação.</li>
+                        <li><strong>Ubiquidade:</strong> Presente na maioria dos dispositivos móveis.</li>
+                    </ul>
+                </div>
+                <div class="p-6 bg-red-50 rounded-lg border border-red-200">
+                    <h3 class="text-xl font-semibold mb-3 text-red-700">3.5. Desvantagens/Limitações do Bluetooth</h3>
+                    <ul class="list-disc list-inside space-y-1 leading-relaxed">
+                        <li><strong>Curto Alcance:</strong> Significativamente menor que o Wi-Fi.</li>
+                        <li><strong>Baixa Taxa de Transferência:</strong> Mais lento que Wi-Fi para grandes volumes.</li>
+                        <li><strong>Número Limitado de Conexões:</strong> 1 mestre, 7 escravos por piconet.</li>
+                        <li><strong>Interferência:</strong> Opera em 2.4 GHz, pode haver interferência com Wi-Fi.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="p-6 bg-indigo-50 rounded-lg border border-indigo-200">
+                <h3 class="text-2xl font-semibold mb-3">3.6. Aplicações Comuns</h3>
+                <ul class="list-disc list-inside space-y-1 columns-1 sm:columns-2 leading-relaxed">
+                    <li>🎧 Áudio Sem Fio (fones, caixas de som).</li>
+                    <li>🖱️ Periféricos Sem Fio (mouses, teclados).</li>
+                    <li>📲 Transferência de arquivos pequenos.</li>
+                    <li>⌚ Wearables (smartwatches, pulseiras fitness).</li>
+                    <li>🩺 Dispositivos Médicos.</li>
+                    <li>💡 Internet das Coisas (sensores, beacons).</li>
+                    <li>🔗 Tethering (compartilhamento de internet).</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="comparativo" class="content-section card">
+            <h2 class="text-3xl font-semibold mb-6">4. Comparativo: Wi-Fi vs. Bluetooth</h2>
+            <p class="mb-6 text-lg leading-relaxed">Esta seção oferece uma comparação direta entre Wi-Fi e Bluetooth. Primeiro, apresentamos uma tabela resumida com as principais características de cada tecnologia lado a lado. Em seguida, um gráfico de barras interativo permite visualizar de forma clara as diferenças em termos de alcance, velocidade e consumo de energia, ajudando a consolidar o entendimento sobre quando cada tecnologia é mais adequada.</p>
+            
+            <h3 class="text-2xl font-semibold mb-4">Tabela Comparativa Detalhada</h3>
+            <div class="table-responsive shadow-lg rounded-lg mb-8">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Wi-Fi</th>
+                            <th>Bluetooth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Propósito Principal</strong></td><td>Acesso à rede/internet, redes locais</td><td>Conexão de dispositivos pessoais de curto alcance</td></tr>
+                        <tr><td><strong>Padrão IEEE</strong></td><td>802.11</td><td>802.15.1</td></tr>
+                        <tr><td><strong>Alcance Típico</strong></td><td>Dezenas a centenas de metros (depende do AP)</td><td>Até 100 metros (Classe 1), comum 10m (Classe 2)</td></tr>
+                        <tr><td><strong>Velocidade</strong></td><td>Alta (Mbps a Gbps)</td><td>Baixa a Média (kbps a poucos Mbps)</td></tr>
+                        <tr><td><strong>Consumo de Energia</strong></td><td>Moderado a Alto</td><td>Baixo (especialmente BLE)</td></tr>
+                        <tr><td><strong>Faixa de Frequência</strong></td><td>2.4 GHz, 5 GHz, 6 GHz</td><td>2.4 GHz</td></tr>
+                        <tr><td><strong>Segurança</strong></td><td>WPA2/WPA3, senhas complexas</td><td>Pareamento, criptografia</td></tr>
+                        <tr><td><strong>Configuração</strong></td><td>Mais complexa (configuração de rede)</td><td>Mais simples (pareamento de dispositivos)</td></tr>
+                        <tr><td><strong>Número de Dispositivos</strong></td><td>Muitos (dezenas a centenas por AP)</td><td>Limitado (1 mestre, 7 escravos por piconet)</td></tr>
+                        <tr><td><strong>Custo</strong></td><td>Moderado (roteadores, APs)</td><td>Baixo (chips integrados)</td></tr>
+                        <tr><td><strong>Aplicações Típicas</strong></td><td>Navegação web, streaming, redes de escritório</td><td>Fones de ouvido, periféricos, wearables, IoT</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4">Comparativo Visual: Alcance, Velocidade e Consumo</h3>
+            <div class="chart-container">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </section>
+
+        <section id="conclusao" class="content-section card">
+            <h2 class="text-3xl font-semibold mb-6">5. Conclusão</h2>
+            <p class="mb-4 text-lg leading-relaxed">Chegamos ao final do nosso guia interativo. Recapitulamos aqui os pontos chave sobre Wi-Fi e Bluetooth. Ambas são tecnologias sem fio vitais, mas com finalidades e características distintas. O Wi-Fi brilha em redes locais robustas e acesso à internet de alta velocidade, enquanto o Bluetooth é mestre em conexões pessoais de curto alcance e baixo consumo. Compreender essas nuances é crucial para escolher a ferramenta certa para cada necessidade de conectividade no nosso mundo cada vez mais sem fios.</p>
+            <p class="mb-4 leading-relaxed">Tanto o Wi-Fi quanto o Bluetooth são tecnologias de transmissão sem fio indispensáveis no mundo moderno, mas foram projetados com propósitos distintos e, portanto, possuem características diferentes.</p>
+            <ul class="list-disc list-inside space-y-2 leading-relaxed">
+                <li><strong>Wi-Fi</strong> é a escolha ideal para criar redes locais sem fio robustas, fornecer acesso à internet de alta velocidade para múltiplos dispositivos e cobrir áreas maiores.</li>
+                <li><strong>Bluetooth</strong> se destaca em conexões de curto alcance, com baixo consumo de energia, sendo perfeito para conectar periféricos, dispositivos vestíveis e facilitar a comunicação direta entre aparelhos próximos.</li>
+            </ul>
+            <p class="mt-4 leading-relaxed">Frequentemente, essas tecnologias coexistem e se complementam nos mesmos dispositivos. Um smartphone, por exemplo, usa Wi-Fi para se conectar à internet e Bluetooth para se conectar a fones de ouvido ou a um smartwatch. Compreender suas diferenças e capacidades permite escolher a tecnologia mais adequada para cada necessidade de conectividade sem fio.</p>
+        </section>
+    </main>
+
+    <footer class="bg-[#0077B6] text-[#FDFBF7] mt-12 py-8 text-center">
+        <p>&copy; <span id="currentYear"></span> Guia Interativo de Tecnologias Sem Fio. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function updateActiveContent(hash) {
+                contentSections.forEach(section => {
+                    if (section.id === hash.substring(1)) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === hash) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                 // Fecha o menu mobile após clicar em um link
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    history.pushState(null, null, targetId); // Atualiza URL sem recarregar
+                    updateActiveContent(targetId);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Handle initial page load based on hash or default
+            let initialHash = window.location.hash;
+            if (!initialHash || !document.getElementById(initialHash.substring(1))) {
+                initialHash = '#introducao';
+                history.replaceState(null, null, initialHash); // Define o hash padrão na URL
+            }
+            updateActiveContent(initialHash);
+
+            // Handle back/forward browser navigation
+            window.addEventListener('popstate', function () {
+                updateActiveContent(window.location.hash || '#introducao');
+            });
+
+            // Chart.js
+            const ctx = document.getElementById('comparisonChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Alcance', 'Velocidade Máx.', 'Consumo de Energia'],
+                        datasets: [
+                            {
+                                label: 'Wi-Fi',
+                                data: [3, 3, 2.5], // Valores representativos (ex: 1=Baixo, 2=Médio, 3=Alto)
+                                backgroundColor: 'rgba(0, 119, 182, 0.7)', // Azul
+                                borderColor: 'rgba(0, 119, 182, 1)',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Bluetooth',
+                                data: [1.5, 1, 1], // Valores representativos
+                                backgroundColor: 'rgba(42, 157, 143, 0.7)', // Verde Azulado
+                                borderColor: 'rgba(42, 157, 143, 1)',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        if (value === 1) return 'Baixo';
+                                        if (value === 1.5) return 'Baixo-Médio';
+                                        if (value === 2) return 'Médio';
+                                        if (value === 2.5) return 'Médio-Alto';
+                                        if (value === 3) return 'Alto';
+                                        return '';
+                                    },
+                                    color: '#3A3A3A' 
+                                },
+                                grid: {
+                                    color: '#D1D5DB' 
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#3A3A3A'
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#3A3A3A' 
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.dataset.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        const value = context.parsed.y;
+                                        if (value === 1) label += 'Baixo';
+                                        else if (value === 1.5) label += 'Baixo-Médio';
+                                        else if (value === 2) label += 'Médio';
+                                        else if (value === 2.5) label += 'Médio-Alto';
+                                        else if (value === 3) label += 'Alto';
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+             // Footer current year
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
+    </script>
+</body>
+</html>
