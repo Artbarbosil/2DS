@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tudo Sobre Doom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* bg-gray-900 */
+            color: #e2e8f0; /* text-gray-200 */
+        }
+        .doom-gradient-text {
+            background: linear-gradient(to right, #ef4444, #f97316, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card {
+            background-color: #2d3748; /* bg-gray-800 */
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            display: flex;
+            flex-direction: column;
+            height: 100%; /* Garante que os cards tenham a mesma altura */
+        }
+        .card-content {
+            flex-grow: 1; /* Faz o conteúdo textual ocupar o espaço restante */
+        }
+        .card-title {
+            font-size: 1.5rem; /* text-2xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem; /* mb-4 */
+            color: #f87171; /* text-red-400 */
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1.5rem; /* mb-6 */
+            text-align: center;
+            padding-top: 2rem; /* pt-8 */
+            padding-bottom: 1rem; /* pb-4 */
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white;
+        }
+        .nav-link.active {
+            @apply bg-red-700 text-white;
+        }
+        /* Estilo para a barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748; /* bg-gray-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ef4444; /* bg-red-500 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626; /* bg-red-600 */
+        }
+        .character-image {
+            width: 100%;
+            height: 200px; /* Altura fixa para as imagens dos personagens */
+            object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+            border-radius: 0.375rem; /* rounded-md */
+            margin-bottom: 1rem; /* mb-4 */
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <div class="text-white font-bold text-xl">
+                    <span class="doom-gradient-text">DOOM</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-4">
+                        <a href="#historia" class="nav-link active">História</a>
+                        <a href="#personagens" class="nav-link">Personagens</a>
+                        <a href="#gameplay" class="nav-link">Gameplay</a>
+                    </div>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-300 hover:text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="hidden mobile-menu" id="mobile-menu">
+                <a href="#historia" class="block py-2 px-4 text-sm nav-link active">História</a>
+                <a href="#personagens" class="block py-2 px-4 text-sm nav-link">Personagens</a>
+                <a href="#gameplay" class="block py-2 px-4 text-sm nav-link">Gameplay</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section class="text-center mb-12 pt-8">
+            <h1 class="text-5xl font-bold mb-4 doom-gradient-text">Bem-vindo ao Inferno na Terra</h1>
+            <p class="text-xl text-gray-400">Explore o legado de Doom, um dos jogos de tiro em primeira pessoa mais influentes de todos os tempos.</p>
+            <img src="https://www.trustedreviews.com/wp-content/uploads/sites/54/2018/10/Doom-Slayer.jpg" alt="Imagem de Destaque Doom Slayer em Ação" class="mt-8 mx-auto rounded-lg shadow-xl w-full max-w-3xl h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/800x400/1a202c/ef4444?text=Rip+and+Tear!';">
+        </section>
+
+        <section id="historia" class="mb-12 scroll-mt-20">
+            <h2 class="section-title doom-gradient-text">História da Franquia</h2>
+            <div class="card">
+                <p class="text-gray-300 leading-relaxed">
+                    Doom, lançado originalmente pela id Software em 1993, revolucionou o gênero de tiro em primeira pessoa (FPS). Criado por John Carmack, John Romero, Adrian Carmack e Tom Hall, o jogo se destacou por seus gráficos 3D inovadores para a época, jogabilidade frenética e atmosfera sombria e violenta.
+                </p>
+                <br>
+                <p class="text-gray-300 leading-relaxed">
+                    A trama coloca o jogador no papel de um fuzileiro espacial, popularmente conhecido como "Doomguy", que luta contra hordas de demônios e mortos-vivos após a Union Aerospace Corporation (UAC) acidentalmente abrir um portal para o Inferno em Marte e suas luas, Fobos e Deimos.
+                </p>
+                <br>
+                <p class="text-gray-300 leading-relaxed">
+                    O sucesso do Doom original gerou diversas sequências, expansões e reboots, incluindo Doom II: Hell on Earth (1994), Doom 3 (2004), Doom (2016) e Doom Eternal (2020). Cada título expandiu a mitologia, introduziu novos inimigos e armas, e aprimorou a jogabilidade visceral que é marca registrada da série. A franquia não apenas definiu muitos dos tropos do gênero FPS, mas também teve um impacto cultural significativo, influenciando inúmeros outros jogos, filmes e mídias.
+                </p>
+            </div>
+        </section>
+
+        <section id="personagens" class="mb-12 scroll-mt-20">
+            <h2 class="section-title doom-gradient-text">Personagens Icônicos</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://cdn.mos.cms.futurecdn.net/W4b2d3Z2rY8nS9T8g8Xo8k.jpg" alt="Imagem do Doom Slayer de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Doom+Slayer';">
+                    <div class="card-content">
+                        <h3 class="card-title">Doom Slayer (Doomguy)</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            O protagonista silencioso e implacável. Um fuzileiro espacial lendário, temido tanto por humanos quanto por demônios. Sua única missão é "rasgar e estilhaçar" até que tudo esteja feito. Nos jogos mais recentes, é revelado como uma figura ancestral de poder imenso, o matador de demônios original.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://static.wikia.nocookie.net/doom/images/5/55/Imp_DE.png/revision/latest" alt="Imagem de um Imp de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Imp';this.style.objectFit='contain';">
+                    <div class="card-content">
+                        <h3 class="card-title">Imp</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Demônios ágeis e comuns, conhecidos por lançar bolas de fogo. São frequentemente os primeiros inimigos encontrados, mas podem ser perigosos em grandes números ou em combinação com outros demônios.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://static.wikia.nocookie.net/doom/images/2/29/CacodemonDE.png/revision/latest" alt="Imagem de um Cacodemon de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Cacodemon';this.style.objectFit='contain';">
+                    <div class="card-content">
+                        <h3 class="card-title">Cacodemon</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Esferas flutuantes, vermelhas e com um único olho, que disparam projéteis de plasma. Sua aparência icônica os tornou um dos demônios mais reconhecíveis da franquia. Engoli-los com uma granada para uma Glory Kill é uma tática satisfatória nos jogos modernos.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://static.wikia.nocookie.net/doom/images/5/5f/Baron_of_Hell_Eternal.png/revision/latest" alt="Imagem de um Baron of Hell de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Baron+of+Hell';this.style.objectFit='contain';">
+                     <div class="card-content">
+                        <h3 class="card-title">Baron of Hell</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Demônios imponentes e musculosos, com pele rosada ou vermelha e pernas de bode. Lançam poderosas bolas de plasma verde e são extremamente resistentes. Representam um desafio significativo, especialmente nas primeiras aparições.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://static.wikia.nocookie.net/doom/images/7/71/Doom_Eternal_Cyberdemon.png/revision/latest" alt="Imagem de um Cyberdemon de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Cyberdemon';this.style.objectFit='contain';">
+                    <div class="card-content">
+                        <h3 class="card-title">Cyberdemon</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Um dos chefes mais temidos. Um demônio colossal com partes cibernéticas, incluindo um lança-foguetes no braço. Sua aparição geralmente sinaliza uma batalha intensa e desafiadora. Derrotá-lo é sempre um marco no jogo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card transform hover:scale-105 transition-transform duration-300">
+                    <img src="https://static.wikia.nocookie.net/doom/images/1/19/Marauder_transparent.png/revision/latest" alt="Imagem de um Marauder de Doom Eternal" class="character-image" onerror="this.onerror=null;this.src='https://placehold.co/400x300/2d3748/f87171?text=Marauder';this.style.objectFit='contain';">
+                    <div class="card-content">
+                        <h3 class="card-title">Marauder</h3>
+                        <p class="text-gray-400 leading-relaxed">
+                            Introduzido em Doom Eternal, o Marauder é um adversário ágil e tático, descrito como um "Doom Slayer do Inferno". Ele exige que o jogador use timing preciso e estratégia para ser derrotado, bloqueando a maioria dos ataques e contra-atacando rapidamente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gameplay" class="mb-12 scroll-mt-20">
+            <h2 class="section-title doom-gradient-text">Gameplay Frenético</h2>
+            <div class="card">
+                <p class="text-gray-300 leading-relaxed mb-4">
+                    A jogabilidade de Doom é caracterizada por sua velocidade, violência e foco no combate agressivo. Diferente de muitos FPS modernos que incentivam cobertura e cautela, Doom recompensa o jogador por avançar e enfrentar os inimigos de frente.
+                </p>
+                <ul class="list-disc list-inside space-y-3 text-gray-300">
+                    <li>
+                        <strong class="text-red-400">Combate em Primeira Pessoa:</strong> O jogador vivencia a ação diretamente através dos olhos do Doom Slayer.
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Movimentação Rápida:</strong> Correr, saltar (e em jogos mais recentes, dar "dashes") são essenciais para desviar de ataques e se posicionar estrategicamente.
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Arsenal Variado:</strong> Uma vasta gama de armas está disponível, desde a clássica Shotgun e Chaingun até a poderosa BFG 9000 e a Espada Crisol. Cada arma tem seus usos táticos.
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Glory Kills (Execuções):</strong> Nos jogos modernos (Doom 2016 e Eternal), enfraquecer inimigos permite realizar execuções corpo a corpo brutais que recompensam o jogador com saúde. Isso incentiva um ciclo de combate agressivo.
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Gerenciamento de Recursos:</strong> O jogador precisa coletar saúde, armadura e munição espalhados pelos níveis ou obtidos de inimigos (especialmente via Glory Kills ou usando a Motosserra).
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Exploração de Níveis:</strong> Os níveis são frequentemente labirínticos, com segredos, chaves coloridas para destravar novas áreas e power-ups que concedem vantagens temporárias.
+                    </li>
+                    <li>
+                        <strong class="text-red-400">Hordas de Inimigos:</strong> Prepare-se para enfrentar um grande número de demônios simultaneamente, exigindo raciocínio rápido e habilidade para sobreviver.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-center py-8">
+        <p class="text-gray-400">&copy; 2024 Site Informativo Doom. Rip and Tear!</p>
+    </footer>
+
+    <script>
+        // Script para menu mobile
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Script para navegação suave e ativação de links
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function activateLink(link) {
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            link.classList.add('active');
+            
+            const mobileLinkSelector = `.mobile-menu a[href="${link.getAttribute('href')}"]`;
+            const mobileLink = document.querySelector(mobileLinkSelector);
+            if (mobileLink) {
+                document.querySelectorAll('.mobile-menu .nav-link').forEach(mLink => mLink.classList.remove('active'));
+                mobileLink.classList.add('active');
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.closest('.mobile-menu')) {
+                    menu.classList.add('hidden');
+                }
+                activateLink(this);
+                const targetId = this.getAttribute('href');
+                if (targetId.startsWith('#')) {
+                    e.preventDefault(); 
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', () => {
+            let currentSectionId = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 70) { 
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            const activeNavLink = document.querySelector(`.nav-link[href="#${currentSectionId}"]`);
+            if (activeNavLink) {
+                activateLink(activeNavLink);
+            } else if (!currentSectionId && pageYOffset < sections[0].offsetTop - 70) {
+                 const firstLink = document.querySelector('.nav-link[href="#historia"]');
+                 if(firstLink) activateLink(firstLink);
+            }
+        });
+
+        const firstLink = document.querySelector('.nav-link[href="#historia"]');
+        if (firstLink) {
+            activateLink(firstLink);
+        }
+
+    </script>
+</body>
+</html>
